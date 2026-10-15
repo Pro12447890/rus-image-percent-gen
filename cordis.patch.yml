@@ -1,0 +1,19 @@
+# Патч бандла rus-image-percent-gen.
+# Одна запись, два инструмента:
+#   pixel_art    — холст 4×4…256×256, покраска по пикселям, предпросмотр ×5/×3, экспорт PNG
+#                  (код в plugin.js);
+#   proxy_switch — выбор исходящего прокси: свой адрес, окружение или напрямую
+#                  (код в proxy.js).
+#
+# АДРЕС ПРОКСИ В ПЛАГИН НЕ ВХОДИТ. По умолчанию всё идёт напрямую. Если нужен
+# свой прокси при каждом запуске DSH — раскомментируй блок config и впиши СВОЙ
+# адрес (или пользуйся инструментом proxy_switch).
+
+- insert:
+    - id: rus-image-percent-gen
+      name: 'rus-image-percent-gen'
+      # config:
+      #   proxy:
+      #     url: 'http://user:password@proxy.example.com:8080'
+      #     noProxy: ['localhost', '127.0.0.1']
+      #     exportEnv: true

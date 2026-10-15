@@ -1,0 +1,81 @@
+{
+  "name": "rus-image-percent-gen",
+  "version": "1.3.0",
+  "private": false,
+  "type": "module",
+  "description": "DeepSeek Harness bundle: Russian UI localization, element scaling (80-220%), pixel-art drawing (pixel_art), and outbound proxy choice with its own settings page - HTTP(S)/SOCKS5, latency and exit-country checks (proxy_switch).",
+  "keywords": [
+    "cordis-plugin",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "image",
+    "localization",
+    "pixel-art",
+    "proxy",
+    "russian",
+    "scale",
+    "settings-page",
+    "socks5",
+    "tool"
+  ],
+  "license": "MIT",
+  "author": "Daymix",
+  "icon": "./icon.svg",
+  "dependencies": {
+    "undici": "^8.12.1"
+  },
+  "exports": {
+    ".": "./plugin.js",
+    "./proxy": "./proxy.js",
+    "./shared": "./shared.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./instructions/*": "./instructions/*"
+  },
+  "files": [
+    "plugin.js",
+    "proxy.js",
+    "shared.js",
+    "client.js",
+    "cordis.patch.yml",
+    "instructions",
+    "README.md",
+    "PUBLISH.md",
+    "LICENSE",
+    "icon.svg"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    },
+    "engines": {
+      "dsh": ">=0.1.2-rc.1"
+    }
+  },
+  "meta": {
+    "title": "Русский язык, масштаб, рисунки и прокси",
+    "titleEn": "Russian UI, scaling, pixel art and proxy",
+    "description": "Один плагин: русский интерфейс, масштаб элементов 80–220 %, инструмент pixel_art (холст до 256×256, предпросмотр ×5/×3, экспорт PNG) и proxy_switch (выбор прокси по пингу со страной выхода).",
+    "descriptionEn": "One plugin: Russian UI, element scaling 80–220%, the pixel_art tool (canvas up to 256×256, ×5/×3 previews, PNG export) and proxy_switch (latency-based proxy choice with the exit country)."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pro12447890/rus-image-percent-gen.git"
+  },
+  "homepage": "https://github.com/Pro12447890/rus-image-percent-gen#readme",
+  "bugs": {
+    "url": "https://github.com/Pro12447890/rus-image-percent-gen/issues"
+  }
+}
