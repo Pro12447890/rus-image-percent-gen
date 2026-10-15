@@ -14,6 +14,12 @@
 Английская версия — [ниже](#english). Как выложить плагин, чтобы его скачали другие —
 [PUBLISH.md](PUBLISH.md).
 
+Установка одной строкой:
+
+```sh
+dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen
+```
+
 ---
 
 ## Рисование: инструмент `pixel_art`
@@ -109,12 +115,15 @@ dsh plugin --profile desktop add <путь-к-папке-плагина>
 
 # или из npm / git, когда пакет опубликован
 dsh plugin --profile desktop add rus-image-percent-gen
-dsh plugin --profile desktop add github:<владелец>/rus-image-percent-gen
+dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen
 ```
 
 В интерфейсе DSH то же самое делается через **Настройки → Плагины** (установка
 бандла). После установки плагин виден в перечне бандлов профиля, а инструмент
 `pixel_art` появляется у агента без перезапуска — достаточно нового запроса.
+
+Совместимость: собран и проверен на DSH **0.2.0-rc.2**, профиль `desktop` (Windows).
+Лицензия — MIT, исходники целиком в репозитории, внешних сервисов плагин не требует.
 
 Внешних зависимостей ровно одна — `undici` (нужна только для прокси; при установке из
 npm ставится сама). PNG кодируется встроенным `node:zlib`, определение инструментов
