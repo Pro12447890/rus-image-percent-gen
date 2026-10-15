@@ -145,9 +145,11 @@ dsh plugin --profile test list
 
 ## 7. Обсуждения DeepSeek Harness
 
-Отдельного API у Discussions нет, поэтому текст вставляется руками:
-`github.com/deepseek-ai/deepseek-harness/discussions` → закреплённая тема для авторов
-плагинов → комментарий:
+~~Отдельного API у Discussions нет, поэтому текст вставляется руками.~~ **Уточнено
+15.10.2026:** API есть — мутация `createDiscussion` в GraphQL, работает через
+`gh api graphql`; а для авторов плагинов в `deepseek-ai/deepseek-harness` заведена
+отдельная категория **Show Your Plugins!** (`show-your-plugins`), а не «закреплённая
+тема». Текст объявления, который был опубликован:
 
 > **rus-image-percent-gen** — один бандл для DSH: русский интерфейс (2310 строк),
 > масштаб элементов 80–220 %, инструмент `pixel_art` (холст 4×4…256×256, покраска по
@@ -157,3 +159,34 @@ dsh plugin --profile test list
 >
 > Установка: `dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen`
 > (или `add rus-image-percent-gen` после публикации в npm).
+
+## 8. Состояние публикации (15.10.2026) — всё выполнено
+
+**Официального реестра плагинов у DSH нет.** В README `deepseek-ai/deepseek-harness`
+единственный механизм обнаружения описан так: *«Add the `dsh-plugin` topic to your
+plugin repository for discoverability»*. То есть «попасть в реестр» = поставить
+**GitHub-топик** `dsh-plugin`; каталоги `dsh-plugin.org` и `dsplugin.app` сторонние и
+сканируют именно этот топик.
+
+| Шаг | Результат |
+|---|---|
+| Репозиторий | https://github.com/Pro12447890/rus-image-percent-gen (public, MIT) |
+| Топики | `dsh-plugin`, `dsh`, `deepseek-harness`, `cordis-plugin`, `pixel-art`, `proxy`, `socks5` |
+| Описание в блоке About | из `package.json`, 226 знаков |
+| Поиск GitHub | `topic:dsh-plugin rus-image-percent-gen` → 1 результат, наш |
+| Заявка в dsh-plugin.org | https://github.com/dshplugin/dsh-plugin-hub/issues/220 — листинг появляется сам по топику, раз в сутки |
+| Заявка в dsplugin.app | https://github.com/vbarter/dsh-plugin-registry/issues/373 → бот: `action: curated`, «Manifest validated» → PR https://github.com/vbarter/dsh-plugin-registry/pull/374 (mergeable, ждёт мейнтейнера) |
+| Discussions DSH | https://github.com/deepseek-ai/deepseek-harness/discussions/9815 — категория **Show Your Plugins!** |
+
+Две ловушки, оплаченные этой публикацией:
+
+1. **Метку `submission` стороннему автору не поставить** — `AddLabelsToLabelable`
+   требует прав triage. Но воркфлоу `ingest-submission.yml` срабатывает и на
+   `issues: opened`, поэтому заявка обрабатывается и без метки (метку ставит сама
+   issue-форма шаблона).
+2. **Топики и Issues недоступны через git.** SSH-мост переносит коммиты, но не
+   метаданные репозитория; для них нужен `gh auth login` (одноразовый код через
+   браузер, не PAT).
+
+`tools\publish-plugin.ps1` после этой публикации **не нужен**: репозиторий создан,
+топики стоят, заявки поданы.
