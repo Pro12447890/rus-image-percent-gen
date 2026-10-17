@@ -20,7 +20,7 @@ node --check plugin.js ; node --check proxy.js ; node --check shared.js ; node -
 
 # 2. Что именно уедет в пакет (должно быть 10 файлов, без node_modules и lock-файла)
 node <путь>\pnpm.mjs pack      # или: npm pack
-tar -tzf rus-image-percent-gen-1.3.0.tgz
+tar -tzf rus-image-percent-gen-1.4.0.tgz
 ```
 
 В архиве обязаны быть: `package.json`, `plugin.js`, `proxy.js`, `shared.js`,
@@ -57,7 +57,7 @@ dsh plugin --profile desktop add @ваш-логин/rus-image-percent-gen
 **Каждая новая публикация — новая версия** (npm не примет тот же номер дважды):
 
 ```powershell
-npm version patch     # 1.3.0 -> 1.1.1 (или minor/major)
+npm version patch     # 1.4.0 -> 1.4.1 (или minor/major)
 npm publish --access public
 ```
 
@@ -67,18 +67,18 @@ npm publish --access public
 # в папке плагина
 git init
 git add .
-git commit -m "rus-image-percent-gen 1.3.0"
+git commit -m "rus-image-percent-gen 1.4.0"
 git branch -M main
 git remote add origin https://github.com/ВАШ-ЛОГИН/rus-image-percent-gen.git
 git push -u origin main
-git tag v1.3.0 ; git push --tags
+git tag v1.4.0 ; git push --tags
 ```
 
 Другие ставят так:
 
 ```sh
 dsh plugin --profile desktop add github:ВАШ-ЛОГИН/rus-image-percent-gen
-dsh plugin --profile desktop add github:ВАШ-ЛОГИН/rus-image-percent-gen#v1.3.0
+dsh plugin --profile desktop add github:ВАШ-ЛОГИН/rus-image-percent-gen#v1.4.0
 ```
 
 Требования к репозиторию: `package.json` в корне, публичный доступ, лицензия, README.

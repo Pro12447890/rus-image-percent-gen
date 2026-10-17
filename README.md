@@ -1,6 +1,6 @@
 # rus-image-percent-gen
 
-**Один плагин DeepSeek Harness, который делает четыре вещи:**
+**Один плагин DeepSeek Harness, который делает пять вещей:**
 
 | Что | Как это выглядит |
 |---|---|
@@ -8,6 +8,7 @@
 | **Масштаб элементов** | кнопка `A+` / `A−` в подвале панели, от 80 % до **220 %** (шаг 5 %, выше 160 % — 10 %) |
 | **Рисование** | инструмент `pixel_art`: холст 4×4…256×256, покраска по пикселю, предпросмотр ×5/×3, экспорт PNG |
 | **Прокси** | инструмент `proxy_switch`, **переключатель в подвале панели** и **своя страница в настройках**: адрес по частям, HTTP(S)/SOCKS5, проверка по пингу со страной выхода |
+| **Тариф** | строка под полем ввода: «Тариф: обычный» или «Тариф: пик ×2» — по системному времени |
 
 Пример результата: ![сердце 16×16](docs/example-heart-6x.png)
 
@@ -107,6 +108,26 @@ dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen
 Для внутрипроцессного прокси нужен пакет `undici` (объявлен в зависимостях, при
 установке из npm ставится сам). Если его нет, `set`/`env`/`check` честно скажут об этом.
 
+## Тариф: строка под полем ввода
+
+Под полем ввода, рядом со скоростью и попаданием в кэш, плагин показывает **действующий
+тариф**: «Тариф: обычный» или «Тариф: пик ×2» — по системному времени пользователя.
+
+У DeepSeek цена в пиковые часы ровно вдвое выше, чем в обычные: пик — **понедельник–пятница,
+01:00–04:00 и 06:00–10:00 UTC**, всё остальное время (включая выходные) — половина цены.
+Плагин переводит эти границы в местное время: подсказка при наведении показывает окна
+(например, `04:00–07:00 · 09:00–13:00` для Москвы) и время следующего переключения. Строка
+обновляется сама каждые 20 секунд — переход через полночь, начало пика и выходные видны
+без перезагрузки.
+
+Китайские государственные праздники, когда действует обычный тариф, не учитываются:
+их список задаётся календарём, а не расписанием.
+
+```text
+● Тариф: обычный        — сейчас, суббота
+● Тариф: пик ×2         — понедельник, 04:00–07:00 и 09:00–13:00 (МСК)
+```
+
 ## Установка
 
 ```sh
@@ -122,8 +143,10 @@ dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen
 бандла). После установки плагин виден в перечне бандлов профиля, а инструмент
 `pixel_art` появляется у агента без перезапуска — достаточно нового запроса.
 
-Совместимость: собран и проверен на DSH **0.2.0-rc.2**, профиль `desktop` (Windows).
-Лицензия — MIT, исходники целиком в репозитории, внешних сервисов плагин не требует.
+Совместимость: собран под DSH **0.2.1-rc.2**, профиль `desktop` (Windows). Строка тарифа
+опирается на слот `conversation.composer.dock`: на сборках, где его нет, остальное работает
+как обычно, а строка просто не показывается. Лицензия — MIT, исходники целиком в
+репозитории, внешних сервисов плагин не требует.
 
 Внешних зависимостей ровно одна — `undici` (нужна только для прокси; при установке из
 npm ставится сама). PNG кодируется встроенным `node:zlib`, определение инструментов
@@ -162,7 +185,7 @@ MIT.
 <a id="english"></a>
 # English
 
-**One DeepSeek Harness bundle that does four things:**
+**One DeepSeek Harness bundle that does five things:**
 
 | What | How it shows up |
 |---|---|
@@ -170,6 +193,7 @@ MIT.
 | **Element scaling** | an `A+` / `A−` control in the sidebar foot, 80 % to **220 %** (5 % steps, 10 % above 160 %) |
 | **Drawing** | the `pixel_art` tool: a 4×4…256×256 canvas, per-pixel painting, ×5/×3 previews, PNG export |
 | **Proxy** | the `proxy_switch` tool, a **switch in the sidebar foot** and **its own settings page**: address parts, HTTP(S)/SOCKS5, latency check with the exit country |
+| **Tariff** | a line under the composer: “Tariff: normal” or “Tariff: peak ×2”, from the system clock |
 
 Publishing instructions: [PUBLISH.md](PUBLISH.md). Example output:
 ![16x16 heart](docs/example-heart-6x.png)
@@ -252,6 +276,26 @@ dispatcher.
 
 The in-process proxy needs the `undici` package (declared as a dependency, installed
 automatically from npm). When it is missing, `set`/`env`/`check` say so plainly.
+
+## Tariff: the line under the composer
+
+Under the composer, beside the speed and cache-hit pills, the bundle shows **which tariff
+applies right now**: “Tariff: normal” or “Tariff: peak ×2”, computed from the user's system
+clock.
+
+DeepSeek charges exactly double during peak hours: **Monday to Friday, 01:00–04:00 and
+06:00–10:00 UTC**; every other hour, weekends included, bills at half the peak rate. The line
+converts those windows into your local time — the tooltip lists them (for example
+`04:00–07:00 · 09:00–13:00` in Moscow) together with the next switch — and refreshes itself
+every 20 seconds, so midnight, the start of a peak window and the weekend need no reload.
+
+Chinese public holidays (which also bill off-peak) are not taken into account: that is a
+calendar, not a schedule.
+
+```text
+● Tariff: normal        — right now, Saturday
+● Tariff: peak ×2       — Monday, 04:00–07:00 and 09:00–13:00 (MSK)
+```
 
 ```sh
 dsh plugin --profile desktop add rus-image-percent-gen
