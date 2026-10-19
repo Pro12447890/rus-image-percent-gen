@@ -1,6 +1,6 @@
 # rus-image-percent-gen
 
-**Один плагин DeepSeek Harness, который делает пять вещей:**
+**Один плагин DeepSeek Harness, который делает шесть вещей:**
 
 | Что | Как это выглядит |
 |---|---|
@@ -9,6 +9,7 @@
 | **Рисование** | инструмент `pixel_art`: холст 4×4…256×256, покраска по пикселю, предпросмотр ×5/×3, экспорт PNG |
 | **Прокси** | инструмент `proxy_switch`, **переключатель в подвале панели** и **своя страница в настройках**: адрес по частям, HTTP(S)/SOCKS5, проверка по пингу со страной выхода |
 | **Тариф** | строка под полем ввода: «Тариф: обычный» или «Тариф: пик ×2» — по системному времени |
+| **Улучшения** | предохранитель от случайной отправки, копирование переписки правой кнопкой, тёмная тема по расписанию — и своя страница «Улучшения» в настройках |
 
 Пример результата: ![сердце 16×16](docs/example-heart-6x.png)
 
@@ -128,6 +129,30 @@ dsh plugin --profile desktop add github:Pro12447890/rus-image-percent-gen
 ● Тариф: пик ×2         — понедельник, 04:00–07:00 и 09:00–13:00 (МСК)
 ```
 
+## Улучшения: предохранитель, копирование, тёмная тема
+
+![Плашка предохранителя](docs/example-guard.png)
+
+**Предохранитель от пустой траты токенов.** Если в поле ввода меньше 5 букв (порог
+настраивается), перед отправкой появляется плашка «Точно ли вы хотите отправить?» с
+кнопками «Отмена» и «Отправить». Спрашиваем не чаще одного раза в 5 минут — иначе
+переписка из «ок» и «да» превращалась бы в сплошные вопросы. Работает и для Enter, и
+для кнопки отправки; «Отправить» в плашке повторяет ровно то действие, которое вы
+только что сделали.
+
+**Копирование по правой кнопке.** Правый клик по сообщению — меню из двух пунктов:
+«Копировать сообщение» и «Копировать всю переписку». В копию не попадают кнопки
+действий и скрытые подсказки, а в полной переписке у сообщений стоят роли «Вы» и «ИИ».
+
+**Тёмная тема по расписанию.** Задайте окно «Тёмная с … до …» по местному времени —
+оно может переходить через полночь (например, 20:00 → 08:00). Внутри окна включается
+тёмная тема, снаружи — светлая, а переход растягивается на 10 секунд (настраивается;
+0 — переключать сразу). Расписание проверяется раз в 20 секунд и при возврате во
+вкладку; если тему выбрать вручную, плагин не спорит до следующей границы окна.
+
+Все три ручки — на странице **Настройки → Улучшения**: включение, порог букв, частота
+вопроса, окно тёмной темы и длительность перехода.
+
 ## Установка
 
 ```sh
@@ -185,7 +210,7 @@ MIT.
 <a id="english"></a>
 # English
 
-**One DeepSeek Harness bundle that does five things:**
+**One DeepSeek Harness bundle that does six things:**
 
 | What | How it shows up |
 |---|---|
@@ -194,6 +219,7 @@ MIT.
 | **Drawing** | the `pixel_art` tool: a 4×4…256×256 canvas, per-pixel painting, ×5/×3 previews, PNG export |
 | **Proxy** | the `proxy_switch` tool, a **switch in the sidebar foot** and **its own settings page**: address parts, HTTP(S)/SOCKS5, latency check with the exit country |
 | **Tariff** | a line under the composer: “Tariff: normal” or “Tariff: peak ×2”, from the system clock |
+| **Improvements** | a short-message guard, right-click chat copying, a scheduled dark theme — and their own **Improvements** settings page |
 
 Publishing instructions: [PUBLISH.md](PUBLISH.md). Example output:
 ![16x16 heart](docs/example-heart-6x.png)
@@ -296,6 +322,29 @@ calendar, not a schedule.
 ● Tariff: normal        — right now, Saturday
 ● Tariff: peak ×2       — Monday, 04:00–07:00 and 09:00–13:00 (MSK)
 ```
+
+## Improvements: a guard, copying, a dark theme
+
+![The guard panel](docs/example-guard.png)
+
+**A guard against wasted tokens.** When the composer holds fewer than 5 letters (the
+threshold is configurable), sending first asks “Are you sure you want to send this?” with
+**Cancel** and **Send**. It asks at most once every 5 minutes — otherwise a conversation of
+“ok” and “yes” would be nothing but questions. It covers both Enter and the send button,
+and **Send** replays exactly the action you just took.
+
+**Right-click copying.** Right-click a message for two items: “Copy message” and “Copy the
+whole conversation”. Action buttons and hidden hints stay out of the copy, and the full
+transcript labels the messages “You” and “AI”.
+
+**Scheduled dark theme.** Pick a window (“Dark from … until …”) in local time — it may
+cross midnight (say 20:00 → 08:00). Inside the window the dark theme is on, outside it the
+light one, and the switch fades over 10 seconds (configurable; 0 switches instantly). The
+schedule is checked every 20 seconds and when the tab regains focus; a manual theme choice
+is not fought until the next window boundary.
+
+All three live on **Settings → Improvements**: toggles, the letter threshold, how often the
+question may appear, the dark window and the transition length.
 
 ```sh
 dsh plugin --profile desktop add rus-image-percent-gen

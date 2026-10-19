@@ -1,9 +1,9 @@
 {
   "name": "rus-image-percent-gen",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": false,
   "type": "module",
-  "description": "DeepSeek Harness bundle: Russian UI localization, element scaling (80-220%), pixel-art drawing (pixel_art), outbound proxy choice with its own settings page (proxy_switch), and a live tariff line under the composer (peak x2 or normal, from the system clock).",
+  "description": "DeepSeek Harness bundle: Russian UI localization, element scaling (80-220%), pixel-art drawing (pixel_art), outbound proxy with its own settings page (proxy_switch), a live tariff line under the composer, and page improvements (short-message guard, right-click copy, scheduled dark theme).",
   "keywords": [
     "cordis-plugin",
     "deepseek-harness",
@@ -20,6 +20,8 @@
     "tariff",
     "pricing",
     "peak-hours",
+    "dark-theme",
+    "context-menu",
     "tool"
   ],
   "license": "MIT",
@@ -68,10 +70,10 @@
     }
   },
   "meta": {
-    "title": "Русский язык, масштаб, рисунки, прокси и тариф",
-    "titleEn": "Russian UI, scaling, pixel art, proxy and tariff",
-    "description": "Один плагин: русский интерфейс, масштаб элементов 80–220 %, инструмент pixel_art (холст до 256×256, предпросмотр ×5/×3, экспорт PNG), proxy_switch (выбор прокси по пингу со страной выхода) и строка тарифа под полем ввода — пик ×2 или обычный по системному времени.",
-    "descriptionEn": "One plugin: Russian UI, element scaling 80–220%, the pixel_art tool (canvas up to 256×256, ×5/×3 previews, PNG export), proxy_switch (latency-based proxy choice with the exit country) and a tariff line under the composer — peak ×2 or normal, from the system clock."
+    "title": "Русский язык, масштаб, рисунки, прокси, тариф и улучшения",
+    "titleEn": "Russian UI, scaling, pixel art, proxy, tariff and improvements",
+    "description": "Один плагин: русский интерфейс, масштаб элементов 80–220 %, pixel_art, proxy_switch, строка тарифа под полем ввода и три улучшения — предохранитель коротких сообщений, копирование переписки по правой кнопке и тёмная тема по расписанию.",
+    "descriptionEn": "One plugin: Russian UI, element scaling 80–220%, pixel_art, proxy_switch, a tariff line under the composer and three improvements — a short-message guard, right-click chat copying and a scheduled dark theme."
   },
   "repository": {
     "type": "git",
