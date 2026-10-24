@@ -1,6 +1,6 @@
 {
   "name": "rus-image-percent-gen",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": false,
   "type": "module",
   "description": "DeepSeek Harness bundle: Russian UI localization, element scaling (80-220%), pixel-art drawing (pixel_art), outbound proxy with its own settings page (proxy_switch), a live tariff line under the composer, and page improvements (short-message guard, right-click copy, scheduled dark theme).",
